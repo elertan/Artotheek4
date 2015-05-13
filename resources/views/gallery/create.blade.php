@@ -17,24 +17,24 @@
 							</ul>
 						</div>
 					@endif
-					<form class="form-horizontal" role="form" method="POST" action="{{ url('/gallery/create') }}">
+					<form enctype="multipart/form-data" class="form-horizontal" role="form" method="POST" action="{{ url('/gallery/create') }}">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						<div class="form-group">
 							<label class="col-md-4 control-label">Naam</label>
 							<div class="col-md-6">
-								<input type="text" class="form-control" name="name">
+								<input type="text" class="form-control" name="name" required>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-md-4 control-label">Descriptie</label>
 							<div class="col-md-6">
-								<textarea class="form-control" name="description" rows="10"></textarea>
+								<textarea class="form-control" name="description" rows="10" required></textarea>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-md-4 control-label">Foto</label>
 							<div class="col-md-6" style="margin-top: 10px;">
-								<input type="file" name="picture">
+								<input type="file" name="picture" required>
 							</div>
 						</div>
 						@if (Auth::user()->isModerator())

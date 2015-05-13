@@ -31,6 +31,8 @@ Route::get('administration/users', 'AdministrationController@users');
 Route::get('gallery', 'GalleryController@index');
 Route::get('gallery/create', 'GalleryController@create');
 
+Route::post('gallery/create', 'GalleryController@createSubmit');
+
 Route::get('artists', 'ArtistController@index');
 
 Route::get('news/create', 'NewsController@create');
@@ -38,6 +40,7 @@ Route::get('news/json', 'NewsController@json');
 Route::get('news/{id}/edit', 'NewsController@edit');
 Route::get('news/{id}/archive', 'NewsController@archive');
 Route::get('news/{id}/destroy', 'NewsController@destroy');
+Route::get('news/{id}/publish', 'NewsController@publish');
 Route::get('news/{id}', 'NewsController@show');
 
 Route::post('news/create', 'NewsController@createSubmit');

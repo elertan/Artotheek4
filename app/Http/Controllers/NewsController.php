@@ -215,5 +215,24 @@ class NewsController extends Controller {
             return redirect()->to('/')->withErrors(array('Je hebt geen toestemming dit artikel te archiveren.'));
         }
     }
+    
+    public function publish($id) {
+        if (Auth::check() && Auth::user()->isModerator()) {
+            
+            $article = News::find($id);
+            
+            if (!$article) {
+                return redirect()->to('/')->withErrors(array('Het artikel dat je probeerde te publiceren bestaat niet.'));
+            } else {
+                $article->state = 1;
+                $article->save();
+                
+                return redirect()->to('/')->with('message', 'Artikel gepubliceerd.');
+            }
+            
+        } else {
+            return redirect()->to('/')->withErrors(array('Je hebt geen toestemming dit artikel te publiceren.'));
+        }
+    }
 
 }

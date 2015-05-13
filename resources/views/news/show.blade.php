@@ -22,11 +22,23 @@
 							<p>{{ Session::get('message') }}</p>
 						</div>
 					@endif
+					<div class="panel">
+					    @if (Auth::check() && Auth::user()->isModerator())
+					        <p>Status: {{ $article->getStateString() }}</p>
+					    @endif
+					    <p>Aangemaakt: {{ $article->created_at }}</p>
+					    <p>Gewijzigd: {{ $article->updated_at }}</p>
+					    <p>Geplaatst door: {{ $article->user->name }}</p>
+					</div>
 					{{ $article->body }}
 					@if (Auth::check() && Auth::user()->isModerator())
 					    <div class="container" style="margin-top: 10px;">
                             <button id="btnEditArticle" class="btn btn-primary">Wijzig</button>
-                            <button id="btnArchiveArticle" class="btn btn-warning">Archiveer</button>
+                            @if ($article->state == 0)
+                                <button id="btnPublishArticle" class="btn btn-success">Publiceer</button>
+                            @else
+                                <button id="btnArchiveArticle" class="btn btn-warning">Archiveer</button>
+                            @endif
 					        <button id="btnRemoveArticle" class="btn btn-danger">Verwijder</button>
 					    </div>
 					@endif
@@ -42,6 +54,9 @@
         });
         $('#btnArchiveArticle').click(function () {
             window.location.assign('/news/{{ $article->id }}/archive');
+        });
+        $('#btnPublishArticle').click(function () {
+            window.location.assign('/news/{{ $article->id }}/publish');
         });
         $('#btnRemoveArticle').click(function () {
             if (confirm('Weet je zeker dat je dit artikel wilt verwijderen?')) {

@@ -21,13 +21,20 @@ class AdministrationController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
-	{
-		return view('administration/index');
+	public function index() {
+        if (Auth::check() && Auth::user()->isAdministrator()) {
+            return view('administration/index');
+        } else {
+            return redirect()->to('/')->withErrors(array('Je hebt geen toestemming deze pagina te bekijken.'));
+        }
 	}
 
 	public function users() {
-		return view('administration/users');
+        if (Auth::check() && Auth::user()->isAdministrator()) {
+            return view('administration/users');
+        } else {
+            return redirect()->to('/')->withErrors(array('Je hebt geen toestemming deze pagina te bekijken.'));
+        }
 	}
 
 }
