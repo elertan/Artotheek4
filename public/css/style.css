@@ -1,0 +1,12 @@
+.artwork-img {
+    margin-bottom: 10px;
+}
+
+.news-article {
+    transition: background 0.3s;
+}
+
+.news-article:hover {
+    background: #EEE;
+    cursor: pointer;
+}
