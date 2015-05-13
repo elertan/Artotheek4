@@ -6,7 +6,7 @@
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
 				<div class="panel-heading">Gallerij</div>
-				<div class="panel-body">
+				<div class="panel-body" ng-controller="artworkController">
 					@if (count($errors) > 0)
 						<div class="alert alert-danger">
 							<strong>Oeps!</strong> Er waren problemen met jou ingevoerde gegevens.<br><br>
@@ -27,20 +27,23 @@
 						<div class="panel"></div>
 					@endif
 					<div class="panel">
-					    <input type="text" ng-model="eventQuery" placeholder="Zoek..." class="form-control">
+					    <input type="text" ng-model="artworkQuery" placeholder="Zoek..." class="form-control">
 					</div>
-					@for ($i = 0; $i < 12; $i++)
-						<div class="artwork-img col-md-4">
-						    <img src="{{ asset('images/artworks/test.png') }}" class="img-responsive">
-						    <p style="text-align: center;">Lorem Ipsum</p>
-						</div>
-					@endfor
+                    <div class="artwork-img col-md-2" ng-repeat="artwork in artworks | filter:artworkQuery">
+                        <img src="@{{ '/images/artworks/' + artwork.id + '.' + artwork.extension }}" class="img-responsive">
+                        <p style="text-align: center;">@{{ artwork.title }}</p>
+                    </div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
 <script type="text/javascript">
+    app.controller('artworkController', function ($scope, $http) {
+        $http.get('/gallery/json').then(function (response) {
+            $scope.artworks = response.data;
+        });
+    });
 	$(function () {
 		$('#btnSendNew').click(function () {
 			window.location.assign('{{ url("/gallery/create") }}');

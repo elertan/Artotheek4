@@ -30,6 +30,7 @@ Route::get('administration/users', 'AdministrationController@users');
 
 Route::get('gallery', 'GalleryController@index');
 Route::get('gallery/create', 'GalleryController@create');
+Route::get('gallery/json', 'GalleryController@json');
 
 Route::post('gallery/create', 'GalleryController@createSubmit');
 
