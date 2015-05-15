@@ -22,7 +22,7 @@
 							<p>{{ Session::get('message') }}</p>
 						</div>
 					@endif
-					{{ $article->body }}
+					{!! $article->body !!}
 					@if (Auth::check() && Auth::user()->isModerator())
 					    <div class="container" style="margin-top: 10px;">
                             <button id="btnEditArticle" class="btn btn-primary">Wijzig</button>
