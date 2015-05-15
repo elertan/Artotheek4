@@ -15,7 +15,7 @@ class CreateNewsTable extends Migration {
         Schema::create('news', function ($table) {
             $table->increments('id');
             $table->string('title', 50);
-            $table->string('body', 500);
+            $table->string('body', 5000000);
             $table->integer('state')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');

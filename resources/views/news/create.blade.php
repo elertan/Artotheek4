@@ -21,16 +21,19 @@
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">Titel</label>
-							<div class="col-md-6">
+							<label class="col-md-1 control-label">Titel</label>
+							<div class="col-md-12">
 								<input type="text" class="form-control" name="title">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-4 control-label">Inhoud</label>
-							<div class="col-md-6">
+							<label class="col-md-1 control-label">Inhoud</label>
+							<div class="col-md-12">
 <!--								<input type="email" class="form-control" name="body">-->
-								<textarea name="body" class="form-control" rows="10"></textarea>
+								<textarea name="body" class="form-control" id="editor1" rows="10"></textarea>
+								<script>
+									CKEDITOR.replace('editor1');
+								</script>
 							</div>
 						</div>
 						<div class="form-group">
