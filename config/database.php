@@ -54,9 +54,11 @@ return [
 
 		'mysql' => [
 			'driver'    => 'mysql',
+			'unix_socket'   => '/Applications/MAMP/tmp/mysql/mysql.sock',
 			'host'      => env('DB_HOST', 'localhost'),
 			'database'  => env('DB_DATABASE', 'artotheek4'),
 			'username'  => env('DB_USERNAME', 'root'),
+			'password' => 'root',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

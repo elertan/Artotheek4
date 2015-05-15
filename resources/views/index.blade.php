@@ -33,7 +33,7 @@
                             <h4 style="color: gray;">@{{ article.stateString }}</h4>
                         @endif
                         <h4>@{{ article.title || 'Laden...' }}</h4>
-                        <p>@{{ article.body }}</p>
+                        <p ng-bind-html="article.body"></p>
                         <p><a href="/news/@{{ article.id }}">Lees verder...</a></p>
                     </div>
 				</div>
@@ -63,7 +63,6 @@
     </div>
 </div>
 <script>
-    var app = angular.module('app', []);
     app.controller('newsController', function ($scope, $http) {
         $scope.articles = [{}];
         var request = $http.get('{{ url("/news/json") }}');

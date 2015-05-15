@@ -22,6 +22,7 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="https://code.angularjs.org/1.3.9/angular.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular-sanitize.js"></script>
 </head>
 <body>
 	<nav class="navbar navbar-default">
@@ -66,7 +67,7 @@
 		</div>
 	</nav>
     <script>
-        var app = angular.module('app', []);
+        var app = angular.module('app', ['ngSanitize']);
     </script>
 	@yield('content')
 
